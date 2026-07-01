@@ -1,67 +1,84 @@
-# # test 1
-# # write a function that takes a list of numbers 
+# # # test 1
+# # # write a function that takes a list of numbers 
 
-# def evenNum(userNum):
-#     boxOfEven = []
-#     for x in userNum:
-#         if (x % 2 == 0):
-#             boxOfEven.append(x)
-#         else:
-#             continue
+# # def evenNum(userNum):
+# #     boxOfEven = []
+# #     for x in userNum:
+# #         if (x % 2 == 0):
+# #             boxOfEven.append(x)
+# #         else:
+# #             continue
 
-#     return boxOfEven
+# #     return boxOfEven
 
-# newX = evenNum([1,2,3,4,5,6])
-# print(newX)
-
-
-# # test 2
-# # You have this:
-# unit = {"name": "Goku", "type": "AGL", "rarity": "LR"}
-# # Write code that prints "Goku is an AGL LR unit"
-# # using the dictionary values, not hardcoded text
-
-# print(f'{unit["name"]} is an {unit["type"]} LR unit ')
+# # newX = evenNum([1,2,3,4,5,6])
+# # print(newX)
 
 
+# # # test 2
+# # # You have this:
+# # unit = {"name": "Goku", "type": "AGL", "rarity": "LR"}
+# # # Write code that prints "Goku is an AGL LR unit"
+# # # using the dictionary values, not hardcoded text
+
+# # print(f'{unit["name"]} is an {unit["type"]} LR unit ')
 
 
-# # task 3
-# # # Create a class called Unit with name, type, and rarity
-# # # Then create two Unit objects and print both of their names
-
-# class Unit:
-#     def __init__(self, name, type, rarity ):
-#         self.name = name
-#         self.type = type
-#         self.rarity = rarity
 
 
-# unit1 = Unit('Goku' , 'AGL' , 'LR')
-# unit2 = Unit('Vegeta' , 'PHY' , 'SSR')
+# # # task 3
+# # # # Create a class called Unit with name, type, and rarity
+# # # # Then create two Unit objects and print both of their names
 
-# print(unit1.name)
-# print(unit2.name)
+# # class Unit:
+# #     def __init__(self, name, type, rarity ):
+# #         self.name = name
+# #         self.type = type
+# #         self.rarity = rarity
 
-my_team = [
-            {"name": "Goku", "type": "AGL", "rarity": "LR"}, 
-            {"name": "Vegeta", "type": "AGL", "rarity": "LR"},
-            {"name": "Picolo", "type": "PHY", "rarity": "LR"},
-            {"name": "Nappa", "type": "TEQ", "rarity": "LR"},
-            {"name": "Raditz", "type": "STR", "rarity": "LR"}
-    ]
-# You have a list of dictionaries (like Test 2's unit, but 5 of them)
-# Write code that returns only the units where type == "AGL"
-def sameType(Theteam):
 
-    boxOfSameType = []
-    for x in Theteam:
-        if x["type"] == "AGL":
-            boxOfSameType.append(x)
+# # unit1 = Unit('Goku' , 'AGL' , 'LR')
+# # unit2 = Unit('Vegeta' , 'PHY' , 'SSR')
 
-    return boxOfSameType
+# # print(unit1.name)
+# # # print(unit2.name)
 
-newBox = sameType(my_team)
-print(newBox)
+# # my_team = [
+# #             {"name": "Goku", "type": "AGL", "rarity": "LR"}, 
+# #             {"name": "Vegeta", "type": "AGL", "rarity": "LR"},
+# #             {"name": "Picolo", "type": "PHY", "rarity": "LR"},
+# #             {"name": "Nappa", "type": "TEQ", "rarity": "LR"},
+# #             {"name": "Raditz", "type": "STR", "rarity": "LR"}
+# #     ]
+# # # You have a list of dictionaries (like Test 2's unit, but 5 of them)
+# # # Write code that returns only the units where type == "AGL"
+# # def sameType(Theteam):
+
+# #     boxOfSameType = []
+# #     for x in Theteam:
+# #         if x["type"] == "AGL":
+# #             boxOfSameType.append(x)
+
+# #     return boxOfSameType
+
+# # newBox = sameType(my_team)
+# # print(newBox)
     
 
+# task 5
+import json
+
+
+with open('units.json', 'r') as file:
+    try:
+        my_team = json.load(file)
+    except:
+        print("Sorry, but the file must be broken T_T")
+
+count = 0
+for x in my_team:
+    if isinstance(x["hp"], str) or not x["hp"] :
+        continue
+    else:
+        count += x["hp"]
+print(count)
