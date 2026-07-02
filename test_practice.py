@@ -67,18 +67,30 @@
 
 # task 5
 import json
-
-
-with open('units.json', 'r') as file:
-    try:
-        my_team = json.load(file)
-    except:
+import sys
+try:
+        with open('units.json', 'r') as file:
+            my_team = json.load(file)
+except:
         print("Sorry, but the file must be broken T_T")
+        sys.exit()
 
+skipped_units = 0
+hp_total = 0
 count = 0
+valid_units = []
 for x in my_team:
     if isinstance(x["hp"], str) or not x["hp"] :
+        skipped_units+=1
         continue
     else:
-        count += x["hp"]
-print(count)
+        hp_total += x["hp"]
+        count+=1
+        valid_units.append(x)
+
+with open("clean_units.json" , "w") as file:
+    json.dump(valid_units ,file, indent = 3 )
+        
+print(count, "units are valid and has HP")
+print(skipped_units , "were skipped")
+print(hp_total , "is the total HP of the valid units")

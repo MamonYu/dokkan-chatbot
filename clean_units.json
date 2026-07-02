@@ -1,0 +1,26 @@
+[
+   {
+      "name": "Goku",
+      "type": "AGL",
+      "rarity": "LR",
+      "hp": 5084
+   },
+   {
+      "name": "Vegeta",
+      "type": "AGL",
+      "rarity": "LR",
+      "hp": 8439
+   },
+   {
+      "name": "Picolo",
+      "type": "PHY",
+      "rarity": "LR",
+      "hp": 12000
+   },
+   {
+      "name": "Nappa",
+      "type": "TEQ",
+      "rarity": "LR",
+      "hp": 7567
+   }
+]
