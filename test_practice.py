@@ -65,7 +65,7 @@
 # # print(newBox)
     
 
-# task 5
+# # task 5
 import json
 import sys
 try:
@@ -75,22 +75,45 @@ except:
         print("Sorry, but the file must be broken T_T")
         sys.exit()
 
-skipped_units = 0
-hp_total = 0
-count = 0
-valid_units = []
-for x in my_team:
-    if isinstance(x["hp"], str) or not x["hp"] :
-        skipped_units+=1
-        continue
-    else:
-        hp_total += x["hp"]
-        count+=1
-        valid_units.append(x)
+# skipped_units = 0
+# hp_total = 0
+# count = 0
+# valid_units = []
+# for x in my_team:
+#     if isinstance(x["hp"], str) or not x["hp"] :
+#         skipped_units+=1
+#         continue
+#     else:
+#         hp_total += x["hp"]
+#         count+=1
+#         valid_units.append(x)
 
-with open("clean_units.json" , "w") as file:
-    json.dump(valid_units ,file, indent = 3 )
+# with open("clean_units.json" , "w") as file:
+#     json.dump(valid_units ,file, indent = 3 )
         
-print(count, "units are valid and has HP")
-print(skipped_units , "were skipped")
-print(hp_total , "is the total HP of the valid units")
+# print(count, "units are valid and has HP")
+# print(skipped_units , "were skipped")
+# print(hp_total , "is the total HP of the valid units")
+
+
+# task 6 
+# search function
+# part 1
+def search_units(unit_list , search_term):
+    sameUnits = []
+    cleanSearch = search_term.strip()
+    upperCleanSearch = cleanSearch.upper()
+    for x in unit_list:
+           if upperCleanSearch == x["type"].strip().upper():
+                sameUnits.append(x)
+           else:
+                continue
+    filterdResault = []
+    for unit in sameUnits:
+          filterdResault.append({'name' :unit['name'] , 'type' :unit['type']})
+    return filterdResault
+
+
+promptUsers = input("Enter the type of the Char: ")
+resualt = search_units(my_team , promptUsers)
+print(resualt)
