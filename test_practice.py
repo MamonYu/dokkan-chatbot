@@ -97,23 +97,66 @@ except:
 
 
 # task 6 
-# search function
-# part 1
-def search_units(unit_list , search_term):
-    sameUnits = []
-    cleanSearch = search_term.strip()
-    upperCleanSearch = cleanSearch.upper()
-    for x in unit_list:
-           if upperCleanSearch == x["type"].strip().upper():
-                sameUnits.append(x)
-           else:
-                continue
-    filterdResault = []
-    for unit in sameUnits:
-          filterdResault.append({'name' :unit['name'] , 'type' :unit['type']})
-    return filterdResault
+# # search function
+# # part 1
+# def search_units(unit_list , search_term):
+#     sameUnits = []
+#     cleanSearch = search_term.strip()
+#     upperCleanSearch = cleanSearch.upper()
+#     for x in unit_list:
+#            if upperCleanSearch == x["type"].strip().upper():
+#                 sameUnits.append(x)
+#            else:
+#                 continue
+#     filterdResault = []
+#     for unit in sameUnits:
+#           filterdResault.append({'name' :unit['name'] , 'type' :unit['type']})
+#     return filterdResault
 
 
-promptUsers = input("Enter the type of the Char: ")
-resualt = search_units(my_team , promptUsers)
-print(resualt)
+# promptUsers = input("Enter the type of the Char: ")
+# resualt = search_units(my_team , promptUsers)
+# print(resualt)
+
+
+
+# #part 2
+# def search_by_name(unit_list, partial_name):
+#       units_names = []
+#       clean_Name = partial_name.strip().lower()
+#       for x in unit_list:
+#             if clean_Name in x["name"].strip().lower():
+#                   units_names.append(x)
+#       return units_names
+                  
+# userInput = input("Enter the name of the char: ")
+# outputChar = search_by_name(my_team, userInput)
+# if not outputChar:
+#       print("No units found matching that name")
+# else:
+#        print(outputChar)
+
+# part 3
+def build_report(unit_list):
+       units_string = []
+       filterd_units = []
+       sortedUnits = []
+       for x in unit_list:
+            if isinstance(x["hp"], str) or not x["hp"]:
+                 continue
+            else:
+                 filterd_units.append(x)
+       sortedUnits = sorted(filterd_units , key = lambda HP : HP['hp'] , reverse = True)
+       for x in sortedUnits:
+                unit = f"{x['name']} ({x['type']}, {x['rarity']}) - {x['hp']} HP"
+                units_string.append(unit)
+       return units_string
+
+unitSorted = build_report(my_team)
+# part 4
+with open("report.txt" , "w" , encoding="utf-8") as file:
+      file.write("\n".join(unitSorted))
+
+
+
+
