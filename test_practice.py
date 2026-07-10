@@ -107,11 +107,14 @@ class Team:
               
        def add_unit(self, unit):
               self.unit = unit
-              for unit in self.list_of_units: 
-                    self.list_of_units.append(unit)
+              self.list_of_units.append(unit)
+              print(len(self.list_of_units))
 
        def print_names(self):
-             return f"{self.list_of_units}"
+        filterdResault = []
+        for unit in self.list_of_units:
+          filterdResault.append({'name' :unit.name , 'type' :unit.type})
+        return filterdResault
               
 goku = Unit("Goku", "AGL", "LR", "Pure Saiyans", True)
 vegeta = Unit("Vegeta", "AGL", "LR", "Pure Saiyans", False)
@@ -119,4 +122,5 @@ vegeta = Unit("Vegeta", "AGL", "LR", "Pure Saiyans", False)
 my_team = Team()
 my_team.add_unit(goku)
 my_team.add_unit(vegeta)
-my_team.print_names() 
+namesOUT = my_team.print_names() 
+print(namesOUT)
