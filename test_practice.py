@@ -113,7 +113,7 @@ class Team:
        def print_names(self):
         filterdResault = []
         for unit in self.list_of_units:
-          filterdResault.append({'name' :unit.name , 'type' :unit.type})
+          filterdResault.append({'name' :unit.name , 'type' :unit.type , 'rarity' : unit.rarity , 'category' : unit.category , 'has_revive' : unit.has_revive })
         return filterdResault
               
 goku = Unit("Goku", "AGL", "LR", "Pure Saiyans", True)
@@ -122,5 +122,10 @@ vegeta = Unit("Vegeta", "AGL", "LR", "Pure Saiyans", False)
 my_team = Team()
 my_team.add_unit(goku)
 my_team.add_unit(vegeta)
-namesOUT = my_team.print_names() 
-print(namesOUT)
+
+## STAGE 2
+
+if Unit.category == "Pure Saiyans" and Unit.rarity == "LR" and Unit.has_revive == True:
+       namesOUT = my_team.print_names() 
+       print(json.dumps(namesOUT , indent = 4))
+
