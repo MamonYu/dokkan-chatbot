@@ -108,7 +108,7 @@ class Team:
        def add_unit(self, unit):
               self.unit = unit
               self.list_of_units.append(unit)
-              print(len(self.list_of_units))
+              # print(len(self.list_of_units))
 
        def print_names(self):
         filterdResault = []
@@ -118,14 +118,24 @@ class Team:
               
 goku = Unit("Goku", "AGL", "LR", "Pure Saiyans", True)
 vegeta = Unit("Vegeta", "AGL", "LR", "Pure Saiyans", False)
+messi = Unit("Messi" , "AGL" , "LR" , "Hybird Saiyans" , False)
+cristiano = Unit("Cristiano" , "STR" , "LR" , "Hybird Saiyans" , True)
 
 my_team = Team()
+other_team = Team()
 my_team.add_unit(goku)
 my_team.add_unit(vegeta)
-
+other_team.add_unit(messi)
+other_team.add_unit(cristiano)
+namesOUT = my_team.print_names() 
 ## STAGE 2
 
-if Unit.category == "Pure Saiyans" and Unit.rarity == "LR" and Unit.has_revive == True:
-       namesOUT = my_team.print_names() 
-       print(json.dumps(namesOUT , indent = 4))
+def find_matches(team):
+  unitList = []
+  for unit in team.list_of_units:
+       if unit.category == "Pure Saiyans" and unit.rarity == "LR" or unit.has_revive == True:
+              unitList.append(unit.name)
+  return print(unitList)
 
+find_matches(my_team)
+find_matches(other_team)
