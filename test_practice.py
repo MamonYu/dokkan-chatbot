@@ -133,9 +133,12 @@ namesOUT = my_team.print_names()
 def find_matches(team):
   unitList = []
   for unit in team.list_of_units:
-       if unit.category == "Pure Saiyans" and unit.rarity == "LR" or unit.has_revive == True:
+       if unit.category == "Pure Saiyans" and unit.rarity == "LR" and unit.has_revive == True:
               unitList.append(unit.name)
-  return print(unitList)
+  return unitList
 
-find_matches(my_team)
-find_matches(other_team)
+test1 = find_matches(my_team)
+test2 = find_matches(other_team)
+
+print(test1)
+print(test2)
