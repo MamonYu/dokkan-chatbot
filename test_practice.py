@@ -119,7 +119,8 @@ class Team:
 goku = Unit("Goku", "AGL", "LR", "Pure Saiyans", True)
 vegeta = Unit("Vegeta", "AGL", "LR", "Pure Saiyans", False)
 messi = Unit("Messi" , "AGL" , "LR" , "Hybird Saiyans" , False)
-cristiano = Unit("Cristiano" , "STR" , "LR" , "Hybird Saiyans" , True)
+cristiano = Unit("Cristiano" , "STR" , "LR" , "Pure Saiyans" , True)
+mbappe = Unit("Mbappe" , "STR" , "LR" , "Pure Saiyans" , True)
 
 my_team = Team()
 other_team = Team()
@@ -142,3 +143,7 @@ test2 = find_matches(other_team)
 
 print(test1)
 print(test2)
+
+
+# STAGE 4 
+
