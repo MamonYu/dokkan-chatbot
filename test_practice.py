@@ -160,6 +160,20 @@ new_team.add_unit(halland)
 new_team.add_unit(cristiano)
 new_team.add_unit(raditz)
 
+TheTeam = Team()
+# piece 1
+check_revive = False
+for unit in new_team.list_of_units:
+      if unit.name in find_matches(new_team) and check_revive == False:
+        TheTeam.add_unit(unit)
+        if unit.has_revive == True:
+                   check_revive = True
+       #  print(TheTeam.print_names())
 
-
-
+# piece 2 
+check_revive2 = False
+for unit in new_team.list_of_units:
+      if unit.category == "Pure Saiyans" and unit.has_revive == False:
+            if unit not in TheTeam.list_of_units:
+              TheTeam.add_unit(unit)
+print(TheTeam.print_names())
