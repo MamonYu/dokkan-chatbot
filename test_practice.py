@@ -121,6 +121,9 @@ vegeta = Unit("Vegeta", "AGL", "LR", "Pure Saiyans", False)
 messi = Unit("Messi" , "AGL" , "LR" , "Hybird Saiyans" , False)
 cristiano = Unit("Cristiano" , "STR" , "LR" , "Pure Saiyans" , True)
 mbappe = Unit("Mbappe" , "STR" , "LR" , "Pure Saiyans" , True)
+halland = Unit("Halland" , "PHY" , "LR" , "Pure Saiyans" , True)
+raditz = Unit("Raditz" , "TEQ" , "LR" , "Pure Saiyans" , False)
+
 
 my_team = Team()
 other_team = Team()
@@ -140,10 +143,23 @@ def find_matches(team):
 
 test1 = find_matches(my_team)
 test2 = find_matches(other_team)
+test3 = []
 
-print(test1)
-print(test2)
+# print(test1)
+# print(test2)
 
 
 # STAGE 4 
+new_team = Team()
+
+new_team.add_unit(goku)
+new_team.add_unit(vegeta)
+new_team.add_unit(messi)
+new_team.add_unit(mbappe)
+new_team.add_unit(halland)
+new_team.add_unit(cristiano)
+new_team.add_unit(raditz)
+
+
+
 
