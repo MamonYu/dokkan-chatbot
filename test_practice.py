@@ -176,4 +176,4 @@ for unit in new_team.list_of_units:
       if unit.category == "Pure Saiyans" and unit.has_revive == False:
             if unit not in TheTeam.list_of_units:
               TheTeam.add_unit(unit)
-print(TheTeam.print_names())
+print(json.dumps(TheTeam.print_names(), indent= 4))
