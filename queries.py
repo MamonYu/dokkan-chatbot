@@ -72,7 +72,11 @@ def get_all_units_with_categories():
                   clean_units[name] = [category]
             else:
                   clean_units[name].append(category) 
-      return clean_units
+
+      a_new_units = [{"name": char, "categories": tags} for char , tags in clean_units.items()]
+      return a_new_units
+
+
 try:
     # print(get_units_by_category("Kamehameha"))
     # print(get_units_by_category('Hybird Saiyans'))
