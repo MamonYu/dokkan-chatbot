@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 conn = sqlite3.connect('dbzTeam.db')
 cursor = conn.cursor()
@@ -54,9 +55,9 @@ def get_all_units_with_categories():
 
       query = """ SELECT *
                     FROM units
-                    JOIN unit_category 
+                    LEFT JOIN unit_category 
                     ON unit_category.unit_id = units.id 
-                    JOIN categories
+                    LEFT JOIN categories
                     ON categories.id = unit_category.category_id;
 """
       
@@ -69,9 +70,13 @@ def get_all_units_with_categories():
             name = unit[0]
             category = unit[8]
             if name not in clean_units:
-                  clean_units[name] = [category]
+                  if category is None:
+                        clean_units[name] = []
+                  else:
+                       clean_units[name] = [category]
             else:
-                  clean_units[name].append(category) 
+                  if category is not None:
+                       clean_units[name].append(category) 
 
       a_new_units = [{"name": char, "categories": tags} for char , tags in clean_units.items()]
       return a_new_units
@@ -83,7 +88,10 @@ try:
     # print(get_units_by_category("Pure Saiyans"))
     # print(get_categories_for_unit("Goku"))
     # print(find_matches_sql("Pure Saiyans" , "LR" , 0))
-    print(get_all_units_with_categories())
+   my_units = get_all_units_with_categories()
+   
+   print(json.dumps(my_units, indent = 3))
+   
 
 
 
