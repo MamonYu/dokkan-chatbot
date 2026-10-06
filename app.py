@@ -1,4 +1,4 @@
-from flask import Flask, jsonify , request , render_template
+from flask import Flask, jsonify , request 
 from queries import get_all_units_with_categories , get_units_by_category , find_matches_sql
 
 app = Flask(__name__)
@@ -29,7 +29,7 @@ def match_search():
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return "Maybe you havve a typoo Sikeeee" , 404
+    return jsonify({"error":"Route not found"}) , 404
     
 if __name__ == "__main__":
     app.run(debug = True)
