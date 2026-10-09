@@ -1,4 +1,5 @@
 import requests
+import json
 
 url = "https://api.dokkandb.com/api/categories"
 
@@ -8,7 +9,7 @@ response = requests.get(
         "Accept": "application/json",
         "Referer": "https://www.dokkandb.com/"
     }
-)
+) 
 
 print("Status:", response.status_code)
-print(response.text)
+print(response.json())
