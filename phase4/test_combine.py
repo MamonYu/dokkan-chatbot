@@ -113,23 +113,27 @@ print("after dedupe: ", len(all_cards))
 #         print(key, "->", str(a[key])[:60], "|", str(b.get(key))[:60])
         
 # Get the category IDs from the first card
-
 for index, sample in enumerate(all_cards, start=1):
 
-    print(f"\n------- Unit {index}-----")
-
-    print("Name:", sample.get('name', 'Unknown name'))
-
+    # ----check if the unit is LR or UR----
     rarity_id = sample.get("rarity")
     rarity_name = rarity_lookup.get(
         rarity_id, f"Unknown rarity({rarity_id}))"
         )
+    if rarity_name not in ("UR" , "LR"):
+        continue
+
+    print(f"\n------- Unit {index}-----")
+
+    print(f"Name: {sample.get('subname') or []} - {sample.get('name') or 'Unknown name'}")
+
+
     print("Rarity:", rarity_name)
 
     element_id = sample.get('element')
     element_name = element_lookup.get(
         element_id, f"Unknown element({element_id})"
-    )
+        )
 
     print("Element:" , element_name)
 
