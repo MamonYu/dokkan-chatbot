@@ -1,4 +1,6 @@
 import requests
+from collections import Counter
+
 
 url = "https://api.dokkandb.com/api/categories"
 
@@ -17,15 +19,15 @@ rarity_lookup = {
     5: "LR"
 }
 element_lookup = {
-    10: "Super STR",
-    11: "Super AGL",
-    12: "Super TEQ",
-    13: "Super INT",
+    10: "Super AGL",
+    11: "Super TEQ",
+    12: "Super INT",
+    13: "Super STR",
     14: "Super PHY",
-    20: "Extreme STR",
-    21: "Extreme AGL",
-    22: "Extreme TEQ",
-    23: "Extreme INT",
+    20: "Extreme AGL",
+    21: "Extreme TEQ",
+    22: "Extreme INT",
+    23: "Extreme STR",
     24: "Extreme PHY"
 }
 
@@ -49,6 +51,7 @@ print("resp1", "Status:", response1.status_code)
 cards = response1.json()
 
 data1 = response1.json()
+
 print("Response type:", type(cards))
 print("Number of cards:", len(cards))
 
@@ -80,9 +83,19 @@ for card in data1 + data2:
 
 
 
-print("number of all cards:",len(all_cards))
-print("before dedupe:", len(data1 + data2))
-print("after dedupe: ", len(all_cards))
+# print("number of all cards:",len(all_cards))
+# print("before dedupe:", len(data1 + data2))
+# print("after dedupe: ", len(all_cards))
+
+
+unique_real_id = []
+# for card in data1 + data2:
+counts = Counter(card['real_id'] for card in data1 + data2)
+print("counts:", len(counts))
+print("set counts:", len(set(counts)))
+print("Most common 5 units", counts.most_common(5))
+# print(set(counts))
+        
 
 # ids1 = {card['id'] for card in data1}
 # ids2 = {card['id'] for card in data2}
@@ -91,7 +104,6 @@ print("after dedupe: ", len(all_cards))
 # print("chunk 2: cards =", len(data2), "| unique ids =", len(ids2))
 # print("ids in both chunks:", len(ids1 & ids2))
 
-# from collections import Counter
 
 # counts = Counter(card['id'] for card in data2)
 # dupe_ids = [card_id for card_id, n in counts.items() if n > 1]
@@ -112,38 +124,38 @@ print("after dedupe: ", len(all_cards))
 #     if a[key] != b.get(key):
 #         print(key, "->", str(a[key])[:60], "|", str(b.get(key))[:60])
         
-# Get the category IDs from the first card
-for index, sample in enumerate(all_cards, start=1):
+# # ---- 2. Keep only UR and LR (rarity 4 and 5) ----
+# filtered_cards = [card for card in all_cards if card.get("rarity") in (4, 5)]
+# print("UR + LR cards:", len(filtered_cards))
 
-    # ----check if the unit is LR or UR----
-    rarity_id = sample.get("rarity")
-    rarity_name = rarity_lookup.get(
-        rarity_id, f"Unknown rarity({rarity_id}))"
-        )
-    if rarity_name not in ("UR" , "LR"):
-        continue
+# # ---- 3. Print each card ----
+# for index, sample in enumerate(filtered_cards[:5], start=1):
 
-    print(f"\n------- Unit {index}-----")
+#     print(f"\n------- Unit {index} -----")
 
-    print(f"Name: {sample.get('subname') or []} - {sample.get('name') or 'Unknown name'}")
+#     subname = sample.get('subname') or ""
+#     name = sample.get('name') or "Unknown name"
+#     print(f"Name: {subname} - {name}")
 
+#     rarity_name = rarity_lookup.get(
+#         sample.get("rarity"), f"Unknown rarity({sample.get('rarity')})"
+#     )
+#     print("Rarity:", rarity_name)
 
-    print("Rarity:", rarity_name)
+#     element_name = element_lookup.get(
+#         sample.get("element"), f"Unknown element({sample.get('element')})"
+#     )
+#     print("Element:", element_name)
 
-    element_id = sample.get('element')
-    element_name = element_lookup.get(
-        element_id, f"Unknown element({element_id})"
-        )
+#     real_id = sample.get("real_id")
+#     _id = sample.get("id")
 
-    print("Element:" , element_name)
+#     print("id", _id)
+#     print("real_id" , real_id)
 
-    # Categories
-    print("Categories:")
+#     print("Categories:")
+#     category_ids = sample.get("category_ids") or []
 
-    category_ids = sample.get("category_ids") or []
-
-    for category_id in category_ids:
-        category_name = category_lookup.get(
-            category_id, "Unknown category"
-            )
-        print("-", category_name)
+#     for category_id in category_ids:
+#         category_name = category_lookup.get(category_id, "Unknown category")
+#         print("-", category_name)
