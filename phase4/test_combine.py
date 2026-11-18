@@ -82,10 +82,10 @@ for card in data1 + data2:
 
 
 
-
-# print("number of all cards:",len(all_cards))
-# print("before dedupe:", len(data1 + data2))
-# print("after dedupe: ", len(all_cards))
+print("/// this is for predict dedupe and stuff")
+print("number of all cards:",len(all_cards))
+print("before dedupe:", len(data1 + data2))
+print("after dedupe: ", len(all_cards))
 
 
 unique_real_id = []
@@ -97,32 +97,32 @@ print("Most common 5 units", counts.most_common(5))
 # print(set(counts))
         
 
-# ids1 = {card['id'] for card in data1}
-# ids2 = {card['id'] for card in data2}
+ids1 = {card['id'] for card in data1}
+ids2 = {card['id'] for card in data2}
 
-# print("chunk 1: cards =", len(data1), "| unique ids =", len(ids1))
-# print("chunk 2: cards =", len(data2), "| unique ids =", len(ids2))
-# print("ids in both chunks:", len(ids1 & ids2))
+print("chunk 1: cards =", len(data1), "| unique ids =", len(ids1))
+print("chunk 2: cards =", len(data2), "| unique ids =", len(ids2))
+print("ids in both chunks:", len(ids1 & ids2))
 
 
-# counts = Counter(card['id'] for card in data2)
-# dupe_ids = [card_id for card_id, n in counts.items() if n > 1]
+counts = Counter(card['id'] for card in data2)
+dupe_ids = [card_id for card_id, n in counts.items() if n > 1]
 
-# print("ids that repeat:", len(dupe_ids))
-# print("first few:", dupe_ids[:5])
+print("ids that repeat:", len(dupe_ids))
+print("first few:", dupe_ids[:5])
 
-# example_id = dupe_ids[0]
-# rows = [card for card in data2 if card['id'] == example_id]
+example_id = dupe_ids[0]
+rows = [card for card in data2 if card['id'] == example_id]
 
-# print("example id:", example_id, "| name:", rows[0]['name'])
-# print("rows for that id:", len(rows))
-# print("rows identical?", rows[0] == rows[1])
+print("example id:", example_id, "| name:", rows[0]['name'])
+print("rows for that id:", len(rows))
+print("rows identical?", rows[0] == rows[1])
 
-# a, b = rows[0], rows[1]
+a, b = rows[0], rows[1]
 
-# for key in a:
-#     if a[key] != b.get(key):
-#         print(key, "->", str(a[key])[:60], "|", str(b.get(key))[:60])
+for key in a:
+    if a[key] != b.get(key):
+        print(key, "->", str(a[key])[:60], "|", str(b.get(key))[:60])
         
 # # ---- 2. Keep only UR and LR (rarity 4 and 5) ----
 # filtered_cards = [card for card in all_cards if card.get("rarity") in (4, 5)]
